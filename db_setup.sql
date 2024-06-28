@@ -8,7 +8,7 @@ CREATE TABLE server_user(
     id SERIAL PRIMARY KEY,
     username varchar(128),
     email varchar(255) UNIQUE,
-    token text
+    token uuid UNIQUE NOT NULL
 );
 
 CREATE TABLE contact(

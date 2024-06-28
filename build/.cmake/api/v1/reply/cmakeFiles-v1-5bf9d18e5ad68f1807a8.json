@@ -1425,8 +1425,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/Users/ilavaleev/Dev/JS/React/crow_server/build",
-		"source" : "/Users/ilavaleev/Dev/JS/React/crow_server"
+		"build" : "/Users/ilavaleev/Dev/JS/React/CrowServer/build",
+		"source" : "/Users/ilavaleev/Dev/JS/React/CrowServer"
 	},
 	"version" : 
 	{

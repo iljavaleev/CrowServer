@@ -1,4 +1,4 @@
-# Install script for directory: /Users/ilavaleev/Dev/JS/React/crow_server/backend
+# Install script for directory: /Users/ilavaleev/Dev/JS/React/CrowServer/backend
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -1,20 +1,23 @@
 #ifndef Handlers_hpp
 #define Handlers_hpp
 #include <string>
-#include <nlohmann/json.hpp>
+#include "crow.h"
 
-using json = nlohmann::json;
 
-struct HW{
+struct Help{
     std::string operator()() const;
 };
 
-struct WP{
-    std::string operator()(int a, int b) const;
+struct GET{
+    std::string operator()(const crow::request&) const;
 };
 
-struct JS{
-    std::string operator()() const;
+struct DELETE{
+    std::string operator()(const int id) const;
+};
+
+struct POST{
+    std::string operator()(const crow::request&) const;
 };
 
 

@@ -6,30 +6,39 @@
 #include <iostream>
 #include <memory>
 
+
 static std::shared_ptr<SQL> db = std::make_shared<SQL>();
 
-std::string HW::operator()() const
+std::string Help::operator()() const
 {
-    std::string q = "select * from accounts limit 10";
-    auto r = db->select_from_table(q);
-    for (auto i{r.begin()}; i != r.end(); ++i)
-    {
-        for (auto j{i.begin()}; j!=i.end(); ++j)
-        {
-            std::cout << *j << " ";
-        }
-        std::cout << std::endl;
-    }
+    const std::string q = "<pre><h3>Welcome to the Address Book API!</h3>\n\r "
+    "Use an Authorization header to work with your own data:\n\r "
+    "fetch(url, { headers: { 'Authorization': 'whatever-you-want' }})\n\r "
+    "The following endpoints are available:\n\r "
+    "GET /contacts\n\r "
+    "DELETE /contacts/:id\n\r "
+    "POST /contacts { name, email, avatarURL } </pre>";
     return q;
 } 
 
 
-std::string WP::operator()(int a, int b) const
+std::string GET::operator()(const crow::request& req, const crow::response& res) const
 {
+    std::string token = req.headers.get("Authorization");
+    if(token.empty())
+        res.
+
     return std::to_string(a + b);
 } 
 
-std::string JS::operator()() const
+std::string DELETE::operator()(const int id) const
+{   
+    json s;
+    s["a"] = "b";
+    return s.dump(4);
+}
+
+std::string POST::operator()(const crow::request&) const
 {   
     json s;
     s["a"] = "b";

@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/ilavaleev/Dev/JS/React/crow_server/backend/src/Handlers.cpp" "backend/CMakeFiles/back.dir/src/Handlers.cpp.o" "gcc" "backend/CMakeFiles/back.dir/src/Handlers.cpp.o.d"
-  "/Users/ilavaleev/Dev/JS/React/crow_server/backend/src/psql.cpp" "backend/CMakeFiles/back.dir/src/psql.cpp.o" "gcc" "backend/CMakeFiles/back.dir/src/psql.cpp.o.d"
+  "/Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/Handlers.cpp" "backend/CMakeFiles/back.dir/src/Handlers.cpp.o" "gcc" "backend/CMakeFiles/back.dir/src/Handlers.cpp.o.d"
+  "/Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/psql.cpp" "backend/CMakeFiles/back.dir/src/psql.cpp.o" "gcc" "backend/CMakeFiles/back.dir/src/psql.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

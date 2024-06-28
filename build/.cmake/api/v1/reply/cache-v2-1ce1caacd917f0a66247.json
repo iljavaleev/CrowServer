@@ -127,7 +127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/ilavaleev/Dev/JS/React/crow_server/build"
+			"value" : "/Users/ilavaleev/Dev/JS/React/CrowServer/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -567,7 +567,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/ilavaleev/Dev/JS/React/crow_server/build/CMakeFiles/pkgRedirects"
+			"value" : "/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -639,7 +639,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/ilavaleev/Dev/JS/React/crow_server"
+			"value" : "/Users/ilavaleev/Dev/JS/React/CrowServer"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",
@@ -1903,7 +1903,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/ilavaleev/Dev/JS/React/crow_server/build"
+			"value" : "/Users/ilavaleev/Dev/JS/React/CrowServer/build"
 		},
 		{
 			"name" : "server_IS_TOP_LEVEL",
@@ -1927,7 +1927,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/ilavaleev/Dev/JS/React/crow_server"
+			"value" : "/Users/ilavaleev/Dev/JS/React/CrowServer"
 		}
 	],
 	"kind" : "cache",

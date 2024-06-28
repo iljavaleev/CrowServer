@@ -8,7 +8,7 @@
 #include <future>
 
 
-
+std::mutex mtx;
 
 pqxx::result SQL::insert_into_table(const std::string& query)
 {   
@@ -121,125 +121,84 @@ void SQL::destroy(const std::string& query)
     }
 }
 
-ServerUser& ServerUser::construct(const pqxx::row& res)
+std::shared_ptr<ServerUser> ServerUser::construct(const pqxx::row& res)
 {
+    std::shared_ptr<ServerUser> su{new ServerUser};
     if (res.empty())
         throw std::runtime_error("Empty BD result");
-    id = res.at(0).as<int>();
-    username = res.at(1).as<std::string>();
-    email = res.at(2).as<std::string>();
-    token = res.at(3).as<std::string>();
-    return *this;
+    su->id = res.at(0).as<int>();
+    su->username = res.at(1).as<std::string>();
+    su->email = res.at(2).as<std::string>();
+    su->token = res.at(3).as<std::string>();
+    return su;
 }
 
-Contact& Contact::construct(const pqxx::row& res)
+std::shared_ptr<Contact> Contact::construct(const pqxx::row& res)
 {
+    std::shared_ptr<Contact> c{new Contact};
     if (res.empty())
         throw std::runtime_error("Empty BD result");
-    id = res.at(0).as<int>();
-    name = res.at(1).as<std::string>();
-    email = res.at(2).as<std::string>();
-    avatarURL = res.at(3).as<std::string>();
-    server_user = res.at(4).as<int>();
-    return *this;
+    c->id = res.at(0).as<int>();
+    c->name = res.at(1).as<std::string>();
+    c->email = res.at(2).as<std::string>();
+    c->avatarURL = res.at(3).as<std::string>();
+    c->server_user = res.at(4).as<int>();
+    return c;
 }
 
-std::shared_ptr<DbObject> Contact::get(int id, const std::string& query)
+template class CRUD<Contact>;
+template class CRUD<ServerUser>;
+
+template <typename T> CRUD<T>::CRUD(const std::shared_ptr<SQL> db):database{db}{}
+
+template<typename T> std::shared_ptr<T> CRUD<T>::get(int id)
 {
-    std::string q = std::vformat(query, std::make_format_args(id));
-    pqxx::result res = this->database->select_from_table(q);
-    return std::make_shared<Contact>(construct(*res.begin()));
+
+    std::string q = T::Get(id);
+    std::lock_guard<std::mutex> g(mtx);
+    pqxx::result res = database->select_from_table(q);
+    
+    return T::construct(*res.begin());
 }
 
-std::shared_ptr<DbObject> ServerUser::get(int id, const std::string& query)
+template<typename T> std::vector<std::shared_ptr<T>> CRUD<T>::get_all()
 {
-    std::string q = std::vformat(query, std::make_format_args(id));
-    pqxx::result res = this->database->select_from_table(q);
-    return std::make_shared<ServerUser>(construct(*res.begin()));
-}
-
-std::vector<std::shared_ptr<DbObject>> ServerUser::get_all(const std::string& query)
-{
-    std::vector<std::shared_ptr<DbObject>> objects;
-    pqxx::result res = this->database->select_from_table(query);
+    std::vector<std::shared_ptr<T>> objects;
+    std::lock_guard<std::mutex> g(mtx);
+    pqxx::result res = database->select_from_table(T::GetAll());
     for (auto i{res.begin()}; i != res.end(); ++i)
-        objects.emplace_back(std::make_shared<ServerUser>(construct(*i)));
+    {
+        objects.emplace_back(T::construct(*i));
+    }
+       
     return objects;
 }
 
-std::vector<std::shared_ptr<DbObject>> Contact::get_all(const std::string& query)
-{
-    std::vector<std::shared_ptr<DbObject>> objects;
-    pqxx::result res = this->database->select_from_table(query);
-    for (auto i{res.begin()}; i != res.end(); ++i)
-        objects.emplace_back(std::make_shared<Contact>(construct(*i)));
-    return objects;
+template<typename T> void CRUD<T>::update(const T& inst)
+{   
+    std::lock_guard<std::mutex> g(mtx);
+    std::string q = inst.Update();
+    database->update(q);
 }
 
-void Contact::update(const std::string& query)
+template<typename T> void CRUD<T>::destroy(int id)
 {
-    std::string q = std::vformat(query, std::make_format_args(name, email, avatarURL, id));
-    this->database->update(q);
+    std::lock_guard<std::mutex> g(mtx);
+    std::string q = T::Destroy(id);
+    database->destroy(q);
 }
 
-void ServerUser::update(const std::string& query)
+template<typename T> void CRUD<T>::create(const T& inst)
 {
-    std::string q = std::vformat(query, std::make_format_args(username, email, token, id));
-    this->database->update(q);
+    
+    std::lock_guard<std::mutex> g(mtx);
+    std::string q = inst.Create();
+    database->insert_into_table(q);
 }
 
-void Contact::destroy(const std::string& query)
+template<typename T> void CRUD<T>::create(const T& inst, int other_id)
 {
-    std::string q = std::vformat(query, std::make_format_args(id));
-    this->database->destroy(q);
-}
-
-void ServerUser::destroy(const std::string& query)
-{
-    std::string q = std::vformat(query, std::make_format_args(id));
-    this->database->destroy(q);
-}
-
-void ServerUser::create(const std::string& query)
-{
-    std::string q = std::vformat(query, std::make_format_args(username, email, token));
-    this->database->insert_into_table(q);
-}
-
-void ServerUser::create(int idx, const std::string& query)
-{
-    std::string q = std::vformat(query, std::make_format_args(username, email, token, idx));
-    this->database->insert_into_table(q);
-}
-
-void Contact::create(int idx, const std::string& query)
-{
-    std::string q = std::vformat(query, std::make_format_args(name, email, avatarURL, idx));
-    this->database->insert_into_table(q);
-}
-
-void Contact::create(const std::string& query)
-{
-    std::string q = std::vformat(query, std::make_format_args(name, email, avatarURL));
-    this->database->insert_into_table(q);
-}
-
-std::vector<std::shared_ptr<DbObject>> Contact::get_all_users(int idx, const std::string& query)
-{
-    std::string q = std::vformat(query, std::make_format_args(idx));
-    std::vector<std::shared_ptr<DbObject>> objects;
-    pqxx::result res = this->database->select_from_table(query);
-    for (auto i{res.begin()}; i != res.end(); ++i)
-        objects.emplace_back(std::make_shared<ServerUser>(construct(*i)));
-    return objects;
-}
-
-std::vector<std::shared_ptr<DbObject>> ServerUser::get_all_contacts(int idx, const std::string& query)
-{
-    std::string q = std::vformat(query, std::make_format_args(idx));
-    std::vector<std::shared_ptr<DbObject>> objects;
-    pqxx::result res = this->database->select_from_table(query);
-    for (auto i{res.begin()}; i != res.end(); ++i)
-        objects.emplace_back(std::make_shared<Contact>(construct(*i)));
-    return objects;
+    std::string q = inst.Create(other_id);
+    std::lock_guard<std::mutex> g{mtx};
+    database->insert_into_table(q);
 }

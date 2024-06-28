@@ -1,5 +1,6 @@
 #ifndef psql_h
 #define psql_h
+#include "Queries.hpp"
 #include <pqxx/pqxx>
 #include <string>
 #include <iostream>
@@ -8,6 +9,10 @@
 #include <memory>
 #include <vector>
 #include <future>
+#include <boost/uuid/uuid.hpp>           
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
+
 
 class SQL
 {
@@ -16,7 +21,7 @@ public:
     {
         URI = std::format(
             "dbname={} user={} password={} host={} port={}", 
-            std::getenv("POSTGRES_DB") ? std::getenv("POSTGRES_DB") : "postgres", 
+            std::getenv("POSTGRES_DB") ? std::getenv("POSTGRES_DB") : "react", 
             std::getenv("POSTGRES_USER") ? std::getenv("POSTGRES_USER") : "postgres", 
             std::getenv("POSTGRES_PASSWORD") ? std::getenv("POSTGRES_PASSWORD") : "postgres",
             std::getenv("POSTGRES_HOST") ? std::getenv("POSTGRES_HOST") : "localhost",
@@ -29,102 +34,98 @@ public:
     void destroy(const std::string&);
 };
 
+template<typename T>
+class CRUD{
+public:
+    CRUD(const std::shared_ptr<SQL> db);
 
-struct DbObject{
-    DbObject(const std::shared_ptr<SQL> db): database{db}{};
+    std::shared_ptr<T> get(int id);
+    std::vector<std::shared_ptr<T>> get_all();
+    
+    void create(const T&);
+    void update(const T&);
+    void create(const T&, int);
+    void destroy(int id);
+private:
     std::shared_ptr<SQL> database;
-    virtual ~DbObject() = default;
-    virtual DbObject& construct(const pqxx::row&) = 0;
-
-    virtual std::shared_ptr<DbObject> get(int id, const std::string&) = 0;
-    virtual std::vector<std::shared_ptr<DbObject>> get_all(const std::string&) = 0;
-    
-    virtual void create(const std::string&) = 0;
-    virtual void create(int id, const std::string&) = 0;
-    
-    
-    virtual void update(const std::string&) = 0;
-    virtual void destroy(const std::string&) = 0;
-   
 };
 
-struct Contact: public DbObject{
-    Contact(const std::shared_ptr<SQL> db, const pqxx::row& res): DbObject(db)
-    {
-        construct(res);
-    };
-    Contact& construct(const pqxx::row&) override;
+struct Contact{
     
-    std::shared_ptr<DbObject> get(int id, const std::string& qry = "SELECT * FROM contact WHERE id={};") override;
-    std::vector<std::shared_ptr<DbObject>> get_all(const std::string& qry = "SELECT * FROM contact;") override;
-    
-    void update(
-        const std::string& query = "UPDATE contact SET id=DEFAULT, name={}, email={}, avatarURL={}, \
-        server_user = {} WHERE id = {}"
-        ) override;
-    void destroy(
-        const std::string& query = "DELETE FROM user_lesson WHERE id={}"
-        ) override;
-    
-    void create(
-        int idx, 
-        const std::string& query = "WITH C as (INSERT INTO contact \
-        VALUES (DEFAULT, {}, {}, {}) RETURNING id), \
-        SU as (SELECT {} as id) INSERT INTO user_contact (server_user, contact) \
-        SELECT  SU.id, T.id FROM C CROSS JOIN SU") override;
-    void create(const std::string& query = "INSERT INTO contact VALUES (DEFAULT, {}, {}, {})") override;
-
-    std::vector<std::shared_ptr<DbObject>> get_all_users(
-        int idx, 
-        const std::string& qry = "WITH uc as (SELECT server_user as id FROM user_contact WHERE contact={}) \
-        SELECT server_user.username, server_user.email, server_user.token FROM server_user \
-        JOIN uc on uc.id = server_user.id;"
-        );
-
     int id{};
     std::string name{};
     std::string email{};
     std::string avatarURL{};
     int server_user{};
+    
+    static std::shared_ptr<Contact> construct(const pqxx::row&);
+
+    static std::string Get(int idx) { return std::vformat(ContactQueries::get, std::make_format_args(idx)); }
+    static std::string Get(std::string&& token) { return std::vformat(ContactQueries::get_by_token, std::make_format_args(std::move(token))); }
+    static std::string GetAll() { return ContactQueries::get_all; }
+    static std::string GetAllUsers(int idx) 
+    { 
+        return std::vformat(ContactQueries::get_all_users, std::make_format_args(idx)); 
+    }
+    std::string Create(int user_id) 
+    { 
+        return std::vformat(ContactQueries::create, std::make_format_args(name, email, avatarURL, user_id)); 
+    }
+    std::string Update() 
+    { 
+        return std::vformat(ContactQueries::update, std::make_format_args(name, email, avatarURL, id)); 
+    }
+    static std::string Destroy(int id) 
+    { 
+        return std::vformat(ContactQueries::destroy, std::make_format_args(id)); 
+    }
 };
 
-struct ServerUser: public DbObject{
-    ServerUser(const std::shared_ptr<SQL> db, const pqxx::row& res): DbObject(db)
-    {
-        construct(res);
-    };
-    ServerUser& construct(const pqxx::row&) override;
+struct ServerUser{
     
-    std::shared_ptr<DbObject> get(int id, const std::string& qry = "SELECT * FROM server_user WHERE id={};") override;
-    std::vector<std::shared_ptr<DbObject>> get_all(const std::string& qry = "SELECT * FROM server_user;") override;
-    
-    void update(
-        const std::string& query = "UPDATE server_user SET id=DEFAULT, username={}, email={}, token={} WHERE id = {}"
-        ) override;
-    void destroy(
-        const std::string& query = "DELETE FROM user_lesson WHERE id={}"
-        ) override;
-    
-    void create(
-        int idx,
-        const std::string& query = "WITH SU as (INSERT INTO server_user \
-        VALUES (DEFAULT, {}, {}, {}) RETURNING id), \
-        C as (SELECT {} as id) \
-        INSERT INTO user_contact (server_user, contact) SELECT  C.id, T.id FROM SU CROSS JOIN C") override;
-    
-    void create(const std::string& query = "INSERT INTO server_user VALUES (DEFAULT, {}, {}, {})") override;
-
-    std::vector<std::shared_ptr<DbObject>> get_all_contacts(
-        int idx,
-        const std::string& qry = "WITH C as (SELECT contact as id FROM user_contact WHERE server_user={}) \
-        SELECT contact.name, contact.email, contact.avatarURL FROM contact \
-        JOIN C on C.id = contact.id;"
-        );
-        
     int id{};
     std::string username{};
     std::string email{};
-    std::string token{};
+    std::string get_token()
+    {
+        if (token.empty())
+        {   
+            std::stringstream ss;
+            std::string  token;
+            auto uuid = boost::uuids::random_generator()();
+            ss << uuid;
+            ss >> token;
+        }
+        return token;
+            
+    };
+
+    static std::shared_ptr<ServerUser> construct(const pqxx::row&);
+    static std::string Get(int idx) { return std::vformat(ServerUserQueries::get, std::make_format_args(idx)); }
+    static std::string Get(std::string&& token) { return std::vformat(ServerUserQueries::get, std::make_format_args(std::move(token))); }
+    static std::string GetAll() { return ServerUserQueries::get_all; }
+    static std::string GetAllContacts(int idx) 
+    { 
+        return std::vformat(ServerUserQueries::get_all_contacts, std::make_format_args(idx));
+    }
+    std::string Create(int contact_id) 
+    { 
+        return std::vformat(ServerUserQueries::create_with_contact, std::make_format_args(username, email, get_token(), contact_id)); 
+    }
+    std::string Create() 
+    { 
+        return std::vformat(ServerUserQueries::create, std::make_format_args(username, email, get_token())); 
+    }
+    std::string Update() 
+    { 
+        return std::vformat(ServerUserQueries::update, std::make_format_args(username, email, get_token(), id)); 
+    }
+    static std::string Destroy(int id) 
+    { 
+        return std::vformat(ServerUserQueries::destroy, std::make_format_args(id)); 
+    }
+private:
+    std::string token;
 };
 
 #endif 

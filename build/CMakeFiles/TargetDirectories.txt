@@ -1,6 +1,6 @@
-/Users/ilavaleev/Dev/JS/React/crow_server/build/CMakeFiles/server.dir
-/Users/ilavaleev/Dev/JS/React/crow_server/build/CMakeFiles/edit_cache.dir
-/Users/ilavaleev/Dev/JS/React/crow_server/build/CMakeFiles/rebuild_cache.dir
-/Users/ilavaleev/Dev/JS/React/crow_server/build/backend/CMakeFiles/back.dir
-/Users/ilavaleev/Dev/JS/React/crow_server/build/backend/CMakeFiles/edit_cache.dir
-/Users/ilavaleev/Dev/JS/React/crow_server/build/backend/CMakeFiles/rebuild_cache.dir
+/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles/server.dir
+/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles/edit_cache.dir
+/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles/rebuild_cache.dir
+/Users/ilavaleev/Dev/JS/React/CrowServer/build/backend/CMakeFiles/back.dir
+/Users/ilavaleev/Dev/JS/React/CrowServer/build/backend/CMakeFiles/edit_cache.dir
+/Users/ilavaleev/Dev/JS/React/CrowServer/build/backend/CMakeFiles/rebuild_cache.dir

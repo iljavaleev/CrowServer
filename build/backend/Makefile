@@ -57,10 +57,10 @@ RM = /opt/homebrew/Cellar/cmake/3.29.6/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ilavaleev/Dev/JS/React/crow_server
+CMAKE_SOURCE_DIR = /Users/ilavaleev/Dev/JS/React/CrowServer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ilavaleev/Dev/JS/React/crow_server/build
+CMAKE_BINARY_DIR = /Users/ilavaleev/Dev/JS/React/CrowServer/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/ilavaleev/Dev/JS/React/crow_server/build/CMakeFiles /Users/ilavaleev/Dev/JS/React/crow_server/build/backend//CMakeFiles/progress.marks
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 backend/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ilavaleev/Dev/JS/React/crow_server/build/CMakeFiles 0
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend//CMakeFiles/progress.marks
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 backend/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 backend/clean
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 backend/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 backend/preinstall
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 backend/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 backend/preinstall
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 backend/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 backend/CMakeFiles/back.dir/rule:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 backend/CMakeFiles/back.dir/rule
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 backend/CMakeFiles/back.dir/rule
 .PHONY : backend/CMakeFiles/back.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ back: backend/CMakeFiles/back.dir/rule
 
 # fast build rule for target.
 back/fast:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/build
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/build
 .PHONY : back/fast
 
 src/Handlers.o: src/Handlers.cpp.o
@@ -135,7 +135,7 @@ src/Handlers.o: src/Handlers.cpp.o
 
 # target to build an object file
 src/Handlers.cpp.o:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/Handlers.cpp.o
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/Handlers.cpp.o
 .PHONY : src/Handlers.cpp.o
 
 src/Handlers.i: src/Handlers.cpp.i
@@ -143,7 +143,7 @@ src/Handlers.i: src/Handlers.cpp.i
 
 # target to preprocess a source file
 src/Handlers.cpp.i:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/Handlers.cpp.i
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/Handlers.cpp.i
 .PHONY : src/Handlers.cpp.i
 
 src/Handlers.s: src/Handlers.cpp.s
@@ -151,7 +151,7 @@ src/Handlers.s: src/Handlers.cpp.s
 
 # target to generate assembly for a file
 src/Handlers.cpp.s:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/Handlers.cpp.s
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/Handlers.cpp.s
 .PHONY : src/Handlers.cpp.s
 
 src/psql.o: src/psql.cpp.o
@@ -159,7 +159,7 @@ src/psql.o: src/psql.cpp.o
 
 # target to build an object file
 src/psql.cpp.o:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/psql.cpp.o
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/psql.cpp.o
 .PHONY : src/psql.cpp.o
 
 src/psql.i: src/psql.cpp.i
@@ -167,7 +167,7 @@ src/psql.i: src/psql.cpp.i
 
 # target to preprocess a source file
 src/psql.cpp.i:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/psql.cpp.i
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/psql.cpp.i
 .PHONY : src/psql.cpp.i
 
 src/psql.s: src/psql.cpp.s
@@ -175,7 +175,7 @@ src/psql.s: src/psql.cpp.s
 
 # target to generate assembly for a file
 src/psql.cpp.s:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/psql.cpp.s
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/psql.cpp.s
 .PHONY : src/psql.cpp.s
 
 # Help Target
@@ -204,6 +204,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -53,10 +53,10 @@ RM = /opt/homebrew/Cellar/cmake/3.29.6/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ilavaleev/Dev/JS/React/crow_server
+CMAKE_SOURCE_DIR = /Users/ilavaleev/Dev/JS/React/CrowServer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ilavaleev/Dev/JS/React/crow_server/build
+CMAKE_BINARY_DIR = /Users/ilavaleev/Dev/JS/React/CrowServer/build
 
 # Include any dependencies generated for this target.
 include backend/CMakeFiles/back.dir/depend.make
@@ -70,32 +70,32 @@ include backend/CMakeFiles/back.dir/progress.make
 include backend/CMakeFiles/back.dir/flags.make
 
 backend/CMakeFiles/back.dir/src/Handlers.cpp.o: backend/CMakeFiles/back.dir/flags.make
-backend/CMakeFiles/back.dir/src/Handlers.cpp.o: /Users/ilavaleev/Dev/JS/React/crow_server/backend/src/Handlers.cpp
+backend/CMakeFiles/back.dir/src/Handlers.cpp.o: /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/Handlers.cpp
 backend/CMakeFiles/back.dir/src/Handlers.cpp.o: backend/CMakeFiles/back.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ilavaleev/Dev/JS/React/crow_server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object backend/CMakeFiles/back.dir/src/Handlers.cpp.o"
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT backend/CMakeFiles/back.dir/src/Handlers.cpp.o -MF CMakeFiles/back.dir/src/Handlers.cpp.o.d -o CMakeFiles/back.dir/src/Handlers.cpp.o -c /Users/ilavaleev/Dev/JS/React/crow_server/backend/src/Handlers.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object backend/CMakeFiles/back.dir/src/Handlers.cpp.o"
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT backend/CMakeFiles/back.dir/src/Handlers.cpp.o -MF CMakeFiles/back.dir/src/Handlers.cpp.o.d -o CMakeFiles/back.dir/src/Handlers.cpp.o -c /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/Handlers.cpp
 
 backend/CMakeFiles/back.dir/src/Handlers.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/back.dir/src/Handlers.cpp.i"
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ilavaleev/Dev/JS/React/crow_server/backend/src/Handlers.cpp > CMakeFiles/back.dir/src/Handlers.cpp.i
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/Handlers.cpp > CMakeFiles/back.dir/src/Handlers.cpp.i
 
 backend/CMakeFiles/back.dir/src/Handlers.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/back.dir/src/Handlers.cpp.s"
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ilavaleev/Dev/JS/React/crow_server/backend/src/Handlers.cpp -o CMakeFiles/back.dir/src/Handlers.cpp.s
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/Handlers.cpp -o CMakeFiles/back.dir/src/Handlers.cpp.s
 
 backend/CMakeFiles/back.dir/src/psql.cpp.o: backend/CMakeFiles/back.dir/flags.make
-backend/CMakeFiles/back.dir/src/psql.cpp.o: /Users/ilavaleev/Dev/JS/React/crow_server/backend/src/psql.cpp
+backend/CMakeFiles/back.dir/src/psql.cpp.o: /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/psql.cpp
 backend/CMakeFiles/back.dir/src/psql.cpp.o: backend/CMakeFiles/back.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ilavaleev/Dev/JS/React/crow_server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object backend/CMakeFiles/back.dir/src/psql.cpp.o"
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT backend/CMakeFiles/back.dir/src/psql.cpp.o -MF CMakeFiles/back.dir/src/psql.cpp.o.d -o CMakeFiles/back.dir/src/psql.cpp.o -c /Users/ilavaleev/Dev/JS/React/crow_server/backend/src/psql.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object backend/CMakeFiles/back.dir/src/psql.cpp.o"
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT backend/CMakeFiles/back.dir/src/psql.cpp.o -MF CMakeFiles/back.dir/src/psql.cpp.o.d -o CMakeFiles/back.dir/src/psql.cpp.o -c /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/psql.cpp
 
 backend/CMakeFiles/back.dir/src/psql.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/back.dir/src/psql.cpp.i"
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ilavaleev/Dev/JS/React/crow_server/backend/src/psql.cpp > CMakeFiles/back.dir/src/psql.cpp.i
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/psql.cpp > CMakeFiles/back.dir/src/psql.cpp.i
 
 backend/CMakeFiles/back.dir/src/psql.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/back.dir/src/psql.cpp.s"
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ilavaleev/Dev/JS/React/crow_server/backend/src/psql.cpp -o CMakeFiles/back.dir/src/psql.cpp.s
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/psql.cpp -o CMakeFiles/back.dir/src/psql.cpp.s
 
 # Object files for target back
 back_OBJECTS = \
@@ -109,19 +109,19 @@ backend/libback.a: backend/CMakeFiles/back.dir/src/Handlers.cpp.o
 backend/libback.a: backend/CMakeFiles/back.dir/src/psql.cpp.o
 backend/libback.a: backend/CMakeFiles/back.dir/build.make
 backend/libback.a: backend/CMakeFiles/back.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/ilavaleev/Dev/JS/React/crow_server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libback.a"
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build/backend && $(CMAKE_COMMAND) -P CMakeFiles/back.dir/cmake_clean_target.cmake
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build/backend && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/back.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libback.a"
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && $(CMAKE_COMMAND) -P CMakeFiles/back.dir/cmake_clean_target.cmake
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/back.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 backend/CMakeFiles/back.dir/build: backend/libback.a
 .PHONY : backend/CMakeFiles/back.dir/build
 
 backend/CMakeFiles/back.dir/clean:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build/backend && $(CMAKE_COMMAND) -P CMakeFiles/back.dir/cmake_clean.cmake
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && $(CMAKE_COMMAND) -P CMakeFiles/back.dir/cmake_clean.cmake
 .PHONY : backend/CMakeFiles/back.dir/clean
 
 backend/CMakeFiles/back.dir/depend:
-	cd /Users/ilavaleev/Dev/JS/React/crow_server/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ilavaleev/Dev/JS/React/crow_server /Users/ilavaleev/Dev/JS/React/crow_server/backend /Users/ilavaleev/Dev/JS/React/crow_server/build /Users/ilavaleev/Dev/JS/React/crow_server/build/backend /Users/ilavaleev/Dev/JS/React/crow_server/build/backend/CMakeFiles/back.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ilavaleev/Dev/JS/React/CrowServer /Users/ilavaleev/Dev/JS/React/CrowServer/backend /Users/ilavaleev/Dev/JS/React/CrowServer/build /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend/CMakeFiles/back.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : backend/CMakeFiles/back.dir/depend
 
