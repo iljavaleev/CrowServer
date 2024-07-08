@@ -97,19 +97,35 @@ backend/CMakeFiles/back.dir/src/psql.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/back.dir/src/psql.cpp.s"
 	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/psql.cpp -o CMakeFiles/back.dir/src/psql.cpp.s
 
+backend/CMakeFiles/back.dir/src/Token.cpp.o: backend/CMakeFiles/back.dir/flags.make
+backend/CMakeFiles/back.dir/src/Token.cpp.o: /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/Token.cpp
+backend/CMakeFiles/back.dir/src/Token.cpp.o: backend/CMakeFiles/back.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object backend/CMakeFiles/back.dir/src/Token.cpp.o"
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT backend/CMakeFiles/back.dir/src/Token.cpp.o -MF CMakeFiles/back.dir/src/Token.cpp.o.d -o CMakeFiles/back.dir/src/Token.cpp.o -c /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/Token.cpp
+
+backend/CMakeFiles/back.dir/src/Token.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/back.dir/src/Token.cpp.i"
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/Token.cpp > CMakeFiles/back.dir/src/Token.cpp.i
+
+backend/CMakeFiles/back.dir/src/Token.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/back.dir/src/Token.cpp.s"
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ilavaleev/Dev/JS/React/CrowServer/backend/src/Token.cpp -o CMakeFiles/back.dir/src/Token.cpp.s
+
 # Object files for target back
 back_OBJECTS = \
 "CMakeFiles/back.dir/src/Handlers.cpp.o" \
-"CMakeFiles/back.dir/src/psql.cpp.o"
+"CMakeFiles/back.dir/src/psql.cpp.o" \
+"CMakeFiles/back.dir/src/Token.cpp.o"
 
 # External object files for target back
 back_EXTERNAL_OBJECTS =
 
 backend/libback.a: backend/CMakeFiles/back.dir/src/Handlers.cpp.o
 backend/libback.a: backend/CMakeFiles/back.dir/src/psql.cpp.o
+backend/libback.a: backend/CMakeFiles/back.dir/src/Token.cpp.o
 backend/libback.a: backend/CMakeFiles/back.dir/build.make
 backend/libback.a: backend/CMakeFiles/back.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libback.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libback.a"
 	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && $(CMAKE_COMMAND) -P CMakeFiles/back.dir/cmake_clean_target.cmake
 	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build/backend && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/back.dir/link.txt --verbose=$(VERBOSE)
 

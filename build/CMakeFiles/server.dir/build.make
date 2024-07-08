@@ -95,6 +95,8 @@ server: CMakeFiles/server.dir/build.make
 server: backend/libback.a
 server: /opt/homebrew/lib/libpqxx.dylib
 server: /opt/homebrew/lib/libboost_system-mt.dylib
+server: /opt/homebrew/Cellar/openssl@3/3.3.1/lib/libssl.dylib
+server: /opt/homebrew/Cellar/openssl@3/3.3.1/lib/libcrypto.dylib
 server: CMakeFiles/server.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)

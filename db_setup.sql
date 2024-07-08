@@ -3,25 +3,25 @@
 DROP TABLE IF EXISTS server_user cascade;
 DROP TABLE IF EXISTS contact cascade;
 DROP TABLE IF EXISTS user_contact;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE server_user(
-    id SERIAL PRIMARY KEY,
-    username varchar(128),
-    email varchar(255) UNIQUE,
-    token uuid UNIQUE NOT NULL
+    email varchar(128) UNIQUE,
+    passw varchar(128) UNIQUE,
+    salt uuid
 );
 
 CREATE TABLE contact(
     id SERIAL PRIMARY KEY,
     name varchar(32),
-    email varchar(255) UNIQUE,
+    email varchar(128) UNIQUE,
     avatarURL varchar(255)
 );
 
 CREATE TABLE user_contact(
-    server_user bigint,
+    user_email varchar(128),
     contact bigint,
-    FOREIGN KEY (server_user) REFERENCES server_user (id) ON DELETE CASCADE,
+    FOREIGN KEY (user_email) REFERENCES server_user (email) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (contact) REFERENCES contact (id) ON DELETE CASCADE,
-    PRIMARY KEY (server_user, contact)
+    PRIMARY KEY (user_email, contact)
 );

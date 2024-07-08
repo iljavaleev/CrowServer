@@ -154,6 +154,30 @@ src/Handlers.cpp.s:
 	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/Handlers.cpp.s
 .PHONY : src/Handlers.cpp.s
 
+src/Token.o: src/Token.cpp.o
+.PHONY : src/Token.o
+
+# target to build an object file
+src/Token.cpp.o:
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/Token.cpp.o
+.PHONY : src/Token.cpp.o
+
+src/Token.i: src/Token.cpp.i
+.PHONY : src/Token.i
+
+# target to preprocess a source file
+src/Token.cpp.i:
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/Token.cpp.i
+.PHONY : src/Token.cpp.i
+
+src/Token.s: src/Token.cpp.s
+.PHONY : src/Token.s
+
+# target to generate assembly for a file
+src/Token.cpp.s:
+	cd /Users/ilavaleev/Dev/JS/React/CrowServer/build && $(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/src/Token.cpp.s
+.PHONY : src/Token.cpp.s
+
 src/psql.o: src/psql.cpp.o
 .PHONY : src/psql.o
 
@@ -190,6 +214,9 @@ help:
 	@echo "... src/Handlers.o"
 	@echo "... src/Handlers.i"
 	@echo "... src/Handlers.s"
+	@echo "... src/Token.o"
+	@echo "... src/Token.i"
+	@echo "... src/Token.s"
 	@echo "... src/psql.o"
 	@echo "... src/psql.i"
 	@echo "... src/psql.s"

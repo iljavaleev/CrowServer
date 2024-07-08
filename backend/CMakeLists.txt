@@ -1,6 +1,7 @@
 add_library(back
 src/Handlers.cpp 
 src/psql.cpp
+src/Token.cpp
 )
 
 

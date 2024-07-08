@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/back.dir/src/Handlers.cpp.o"
   "CMakeFiles/back.dir/src/Handlers.cpp.o.d"
+  "CMakeFiles/back.dir/src/Token.cpp.o"
+  "CMakeFiles/back.dir/src/Token.cpp.o.d"
   "CMakeFiles/back.dir/src/psql.cpp.o"
   "CMakeFiles/back.dir/src/psql.cpp.o.d"
   "libback.a"

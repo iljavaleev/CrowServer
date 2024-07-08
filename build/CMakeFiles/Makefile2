@@ -98,12 +98,12 @@ backend/clean: backend/CMakeFiles/back.dir/clean
 CMakeFiles/server.dir/all: backend/CMakeFiles/back.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles --progress-num=4,5 "Built target server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles --progress-num=5,6 "Built target server"
 .PHONY : CMakeFiles/server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles 0
 .PHONY : CMakeFiles/server.dir/rule
@@ -124,12 +124,12 @@ CMakeFiles/server.dir/clean:
 backend/CMakeFiles/back.dir/all:
 	$(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/depend
 	$(MAKE) $(MAKESILENT) -f backend/CMakeFiles/back.dir/build.make backend/CMakeFiles/back.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles --progress-num=1,2,3 "Built target back"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles --progress-num=1,2,3,4 "Built target back"
 .PHONY : backend/CMakeFiles/back.dir/all
 
 # Build rule for subdir invocation for target.
 backend/CMakeFiles/back.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 backend/CMakeFiles/back.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ilavaleev/Dev/JS/React/CrowServer/build/CMakeFiles 0
 .PHONY : backend/CMakeFiles/back.dir/rule

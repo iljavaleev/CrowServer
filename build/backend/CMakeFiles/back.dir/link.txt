@@ -1,2 +1,2 @@
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libback.a CMakeFiles/back.dir/src/Handlers.cpp.o CMakeFiles/back.dir/src/psql.cpp.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libback.a CMakeFiles/back.dir/src/Handlers.cpp.o CMakeFiles/back.dir/src/psql.cpp.o CMakeFiles/back.dir/src/Token.cpp.o
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libback.a

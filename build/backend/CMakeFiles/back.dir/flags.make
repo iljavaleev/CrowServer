@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/local/include -I/opt/homebrew/include -I/Users/ilavaleev/Dev/JS/React/CrowServer/backend/include
+CXX_INCLUDES = -I/usr/local/include -I/opt/homebrew/include -I/opt/homebrew/Cellar/openssl@3/3.3.1/include -I/Users/ilavaleev/vcpkg/packages/jwt-cpp_arm64-osx/include -I/Users/ilavaleev/vcpkg/packages/picojson_arm64-osx/include -I/Users/ilavaleev/Dev/JS/React/CrowServer/backend/include
 
 CXX_FLAGSarm64 =  -Wall -std=gnu++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk
 

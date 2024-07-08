@@ -13,15 +13,18 @@ set(PQXX /usr/local/include/pqxx)
 find_library(PQXX_LIB pqxx)
 
 
+set(JWT_CPP_INCLUDE_DIRS /Users/ilavaleev/vcpkg/packages/jwt-cpp_arm64-osx/include)
+set(PICOJSON_INCLUDE_DIRS /Users/ilavaleev/vcpkg/packages/picojson_arm64-osx/include)
+find_package(OpenSSL REQUIRED)
 find_package(Crow REQUIRED)
 find_package(Threads REQUIRED)
 find_package(Boost COMPONENTS system REQUIRED)
 find_package(CURL)
 
-include_directories(/usr/local/include  /opt/homebrew/include/ ${Boost_INCLUDE_DIR})
+include_directories(/usr/local/include  /opt/homebrew/include/ ${Boost_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR} ${JWT_CPP_INCLUDE_DIRS} ${PICOJSON_INCLUDE_DIRS})
 
 
 add_subdirectory(backend)
 add_executable(server main.cpp)
-target_link_libraries(server back  ${PQXX_LIB} Crow::Crow ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})
+target_link_libraries(server back  ${PQXX_LIB} Crow::Crow ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES} ${OPENSSL_LIBRARIES})
  

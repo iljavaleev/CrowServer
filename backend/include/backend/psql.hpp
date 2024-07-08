@@ -9,9 +9,11 @@
 #include <memory>
 #include <vector>
 #include <future>
-#include <boost/uuid/uuid.hpp>           
-#include <boost/uuid/uuid_generators.hpp>
-#include <boost/uuid/uuid_io.hpp>
+#include <mutex>
+#include <nlohmann/json.hpp>
+
+
+using json = nlohmann::json;
 
 
 class SQL
@@ -29,103 +31,155 @@ public:
     }
     std::string URI;
     pqxx::result insert_into_table(const std::string&);
-    void update(const std::string&);
+    pqxx::result update(const std::string&);
     pqxx::result select_from_table(const std::string&);
-    void destroy(const std::string&);
+    pqxx::result destroy(const std::string&);
 };
 
 template<typename T>
 class CRUD{
+    template<typename FT, typename RT, typename PK> friend std::vector<std::shared_ptr<RT>> get_all_related(PK pk);
 public:
-    CRUD(const std::shared_ptr<SQL> db);
-
-    std::shared_ptr<T> get(int id);
-    std::vector<std::shared_ptr<T>> get_all();
+    CRUD() = delete;
+    using Tptr = std::shared_ptr<T>;
+    template<typename PK> static Tptr get(PK pk)
+    {
+        std::string q = T::Get(std::move(pk));
+        pqxx::result res = database->select_from_table(q);
+        return T::construct(*res.begin());
+    }
     
-    void create(const T&);
-    void update(const T&);
-    void create(const T&, int);
-    void destroy(int id);
+    template<typename PK1, typename PK2> static Tptr get(PK1 pk1, PK2 pk2 = PK1())
+    {
+        std::string q = T::Get(std::move(pk1), std::move(pk2));
+        pqxx::result res = database->select_from_table(q);
+        return T::construct(*res.begin());
+    }
+    
+    static std::vector<Tptr> get_all()
+    {
+        std::vector<Tptr> objects;
+        pqxx::result res = database->select_from_table(T::GetAll());
+        for (auto i{res.begin()}; i != res.end(); ++i)
+        {
+            objects.emplace_back(T::construct(*i));
+        }
+        
+        return objects;
+    }
+    
+    static Tptr create(T&& inst)
+    {
+        std::string q = inst.Create();
+        pqxx::result res = database->insert_into_table(q);
+        return T::construct(*res.begin());
+    }
+    
+    static Tptr update(T& inst)
+    {
+        std::string q = inst.Update();
+        pqxx::result res = database->update(q);
+        return T::construct(*res.begin());
+    }
+    
+    template<typename PK> static bool create(T& inst, PK other_pk)
+    {  
+        std::string q = inst.Create(other_pk);
+        pqxx::result res = database->insert_into_table(q);
+        if (!res.empty())
+            return true;
+        return false;
+    } 
+    
+    static Tptr destroy(int id)
+    {
+        std::string q = T::Destroy(id);
+        pqxx::result res = database->destroy(q);
+        return T::construct(*res.begin());
+    }
+
+    template <typename PK1, typename PK2> static Tptr destroy(const PK1& pk1, const PK2& pk2=PK1())
+    {
+        std::string q = T::Destroy(pk1, pk2);
+        pqxx::result res = database->destroy(q);
+        return T::construct(*res.begin());
+    }
+
 private:
-    std::shared_ptr<SQL> database;
+    const static std::unique_ptr<SQL> database;
 };
 
-struct Contact{
+
+template<typename T> const std::unique_ptr<SQL> CRUD<T>::database = std::make_unique<SQL>();
+
+template<typename FT, typename RT, typename PK> static std::vector<std::shared_ptr<RT>> get_all_related(PK pk)
+{
+    std::vector<std::shared_ptr<RT>> objects;
     
+    pqxx::result res = CRUD<FT>::database->select_from_table(FT::GetAllRelated(pk));
+    for (auto i{res.begin()}; i != res.end(); ++i)
+    {
+        objects.emplace_back(RT::construct(*i));
+    }
+    return objects;
+}
+
+template<typename ... Args> std::string create_query(const std::string& bluep, Args&&... args)
+{
+    return std::vformat(bluep, std::make_format_args(args...)); 
+}  
+
+
+struct Contact{
     int id{};
     std::string name{};
     std::string email{};
     std::string avatarURL{};
-    int server_user{};
-    
     static std::shared_ptr<Contact> construct(const pqxx::row&);
-
-    static std::string Get(int idx) { return std::vformat(ContactQueries::get, std::make_format_args(idx)); }
-    static std::string Get(std::string&& token) { return std::vformat(ContactQueries::get_by_token, std::make_format_args(std::move(token))); }
-    static std::string GetAll() { return ContactQueries::get_all; }
-    static std::string GetAllUsers(int idx) 
-    { 
-        return std::vformat(ContactQueries::get_all_users, std::make_format_args(idx)); 
-    }
-    std::string Create(int user_id) 
-    { 
-        return std::vformat(ContactQueries::create, std::make_format_args(name, email, avatarURL, user_id)); 
-    }
-    std::string Update() 
-    { 
-        return std::vformat(ContactQueries::update, std::make_format_args(name, email, avatarURL, id)); 
-    }
-    static std::string Destroy(int id) 
-    { 
-        return std::vformat(ContactQueries::destroy, std::make_format_args(id)); 
-    }
+    
+    static std::string Get(int); 
+    static std::string GetAll();
+    static std::string GetAllRelated(int);
+    static std::string Destroy(int); 
+    std::string Create(const std::string& pk); 
+    std::string Update(); 
+    json to_json();
 };
 
 struct ServerUser{
     
-    int id{};
-    std::string username{};
     std::string email{};
-    std::string get_token()
-    {
-        if (token.empty())
-        {   
-            std::stringstream ss;
-            std::string  token;
-            auto uuid = boost::uuids::random_generator()();
-            ss << uuid;
-            ss >> token;
-        }
-        return token;
-            
-    };
+    std::string password{};
+    std::string salt{};
 
     static std::shared_ptr<ServerUser> construct(const pqxx::row&);
-    static std::string Get(int idx) { return std::vformat(ServerUserQueries::get, std::make_format_args(idx)); }
-    static std::string Get(std::string&& token) { return std::vformat(ServerUserQueries::get, std::make_format_args(std::move(token))); }
-    static std::string GetAll() { return ServerUserQueries::get_all; }
-    static std::string GetAllContacts(int idx) 
+
+    static std::string Get(const std::string&); 
+    static std::string GetAll();
+    static std::string GetAllRelated(const std::string&);
+    static std::string Destroy(const std::string&); 
+    std::string Create(int contact_id); 
+    std::string Create(); 
+    std::string Update(); 
+    json to_json();
+};
+
+struct UserContact{
+    std::string user_email{};
+    long contact_id{};
+
+    static std::shared_ptr<UserContact> construct(const pqxx::row&);
+    
+    static std::string Get(const std::string& user_email, const int& contact_id) 
     { 
-        return std::vformat(ServerUserQueries::get_all_contacts, std::make_format_args(idx));
+        return create_query(UserContactQueries::get, user_email, contact_id); 
     }
-    std::string Create(int contact_id) 
+    
+    static std::string Destroy(const std::string& user_email,const int& contact_id) 
     { 
-        return std::vformat(ServerUserQueries::create_with_contact, std::make_format_args(username, email, get_token(), contact_id)); 
+        return create_query(UserContactQueries::destroy, user_email, contact_id); 
     }
-    std::string Create() 
-    { 
-        return std::vformat(ServerUserQueries::create, std::make_format_args(username, email, get_token())); 
-    }
-    std::string Update() 
-    { 
-        return std::vformat(ServerUserQueries::update, std::make_format_args(username, email, get_token(), id)); 
-    }
-    static std::string Destroy(int id) 
-    { 
-        return std::vformat(ServerUserQueries::destroy, std::make_format_args(id)); 
-    }
-private:
-    std::string token;
+    json to_json();
 };
 
 #endif 

@@ -24,8 +24,22 @@
 
 -- INSERT INTO user_contact (server_user, contact) SELECT  C.val, T.id FROM T CROSS JOIN C;
 
-INSERT INTO contact VALUES (DEFAULT, 'Ryan Florence', 'ryan@reacttraining.com', '../public/ryan.jpg');
-INSERT INTO contact VALUES (DEFAULT, 'Michael Jackson', 'michael@reacttraining.com', '../public/michael.jpg');
-INSERT INTO contact VALUES (DEFAULT, 'Tyler McGinnis', 'tyler@reacttraining.com', '../public/tyler.jpg');
+-- INSERT INTO contact VALUES (DEFAULT, 'Ryan Florence', 'ryan@reacttraining.com', '../public/ryan.jpg');
+-- INSERT INTO contact VALUES (DEFAULT, 'Michael Jackson', 'michael@reacttraining.com', '../public/michael.jpg');
+-- INSERT INTO contact VALUES (DEFAULT, 'Tyler McGinnis', 'tyler@reacttraining.com', '../public/tyler.jpg');
 
+-- INSERT INTO server_user VALUES ('iljavaleev', '201285', gen_random_uuid());
 
+-- INSERT INTO user_contact VALUES ('iljavaleev', 1);
+-- INSERT INTO user_contact VALUES ('iljavaleev', 2);
+-- INSERT INTO user_contact VALUES ('iljavaleev', 3);
+
+WITH C as (SELECT contact as id FROM user_contact WHERE user_email='iljavaleev') SELECT contact.id, contact.name, contact.email, contact.avatarURL FROM contact JOIN C on C.id = contact.id;
+-- UPDATE server_user SET email='iljavaleev', passw='201285', salt=gen_random_uuid() WHERE email = 'iljavaleev' RETURNING *;
+
+WITH C as (INSERT INTO contact VALUES 
+    (DEFAULT, 'Mickael Svetlov6', 'mick6@jugger.com', '../public/jugger.jpg') RETURNING id
+), 
+SU as (SELECT 'iljavaleev' as email) 
+INSERT INTO user_contact (user_email, contact) 
+SELECT SU.email, C.id FROM C CROSS JOIN SU RETURNING contact;
